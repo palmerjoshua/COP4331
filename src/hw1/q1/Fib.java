@@ -52,7 +52,7 @@ public class Fib {
 
 
     public static void main(String[] args) {
-
+    // todo support for different number of args
         int f0 = Integer.parseInt(args[0]),
             f1 = Integer.parseInt(args[1]),
             n = Integer.parseInt(args[2]);
