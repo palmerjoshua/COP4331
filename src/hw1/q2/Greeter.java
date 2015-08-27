@@ -26,5 +26,15 @@ public class Greeter
         return "Hello, " + name + "!";
     }
 
+    public void swapNames(Greeter other) {
+        String tmp = this.name;
+        this.name = other.name;
+        other.name = tmp;
+    }
+
+    public Greeter createQualifiedGreeter(String qualifier) {
+        return new Greeter(qualifier + ' ' + this.name);
+    }
+
     private String name;
 }
