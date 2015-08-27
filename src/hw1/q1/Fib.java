@@ -3,58 +3,46 @@ package hw1.q1;
 
 public class Fib {
 
-    private int n0, n1, j;
+    private int n0, n1;
 
-    public Fib(int first, int second, int num) {
+    public Fib(int first, int second) {
         n0 = first;
         n1 = second;
-        j = num;
-    }
-
-    public Fib(int num) {
-        n0 = 0;
-        n1 = 1;
-        j = num;
     }
 
     public Fib() {
         n0 = 0;
         n1 = 1;
-        j = 10;
     }
 
-    public int f() {
+    public int f(int j) {
         int tmp;
         int a = n0, b = n1;
         for (int i = 0; i < j; i++) {
-            System.out.format("%d ", a);
             tmp = b;
             b += a;
             if (i+1<j)
                 a = tmp;
 
         }
-        System.out.println();
         return a;
     }
 
 
-    public int fRec(int x, int y, int k) {
+    public int fRec(int x, int y, int j) {
         int a = x, b = y;
         int tmp;
-        if (k > 1) {
-            System.out.format("%d ", a);
+        if (j > 1) {
             tmp = b;
             b += a;
             a = tmp;
-            return fRec(a, b, k-1);
+            return fRec(a, b, j-1);
         }
-        System.out.format("%d ", a);
         return a;
     }
 
 
-    public int fRec() {
+    public int fRec(int j) {
         return this.fRec(n0, n1, j);
     }
 
@@ -65,18 +53,21 @@ public class Fib {
             f1 = Integer.parseInt(args[1]),
             n = Integer.parseInt(args[2]);
 
+        int iterative, recursive;
+        String it_string = "", re_string = "";
 
-        Fib fib = new Fib(f0, f1, n);
+        Fib fib = new Fib(f0, f1);
 
-        int iterative = fib.f();
-        int recursive = fib.fRec();
+        System.out.print("Iterative: ");
+        for(int i=0; i<n; i++) {
+            iterative = fib.f(i+1);
+            it_string = String.format("%s %d", it_string, iterative);
+        } System.out.println(it_string);
 
-        System.out.println("\nIterative: " + iterative);
-        System.out.println("Recursive: " + recursive);
-
+        System.out.print("\nRecursive: ");
+        for(int i=0; i<n; i++) {
+            recursive = fib.fRec(i+1);
+            re_string = String.format("%s %d", re_string, recursive);
+        } System.out.println(re_string);
     }
-
-
-
-
 }
