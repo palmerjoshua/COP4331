@@ -3,6 +3,8 @@ package hw1.q1;
 
 public class Fib {
 
+    private int n0, n1, j;
+
     public Fib(int first, int second, int num) {
         n0 = first;
         n1 = second;
@@ -25,10 +27,14 @@ public class Fib {
         int tmp;
         int a = n0, b = n1;
         for (int i = 0; i < j; i++) {
+            System.out.format("%d ", a);
             tmp = b;
             b += a;
-            a = tmp;
+            if (i+1<j)
+                a = tmp;
+
         }
+        System.out.println();
         return a;
     }
 
@@ -36,12 +42,14 @@ public class Fib {
     public int fRec(int x, int y, int k) {
         int a = x, b = y;
         int tmp;
-        if (k > 0) {
+        if (k > 1) {
+            System.out.format("%d ", a);
             tmp = b;
             b += a;
             a = tmp;
             return fRec(a, b, k-1);
         }
+        System.out.format("%d ", a);
         return a;
     }
 
@@ -58,19 +66,17 @@ public class Fib {
             n = Integer.parseInt(args[2]);
 
 
-
-
         Fib fib = new Fib(f0, f1, n);
 
         int iterative = fib.f();
         int recursive = fib.fRec();
 
-        System.out.println("Iterative: " + iterative);
+        System.out.println("\nIterative: " + iterative);
         System.out.println("Recursive: " + recursive);
 
     }
 
-    private int n0, n1, j;
+
 
 
 }
