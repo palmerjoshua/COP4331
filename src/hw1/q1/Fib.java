@@ -3,25 +3,25 @@ package hw1.q1;
 
 public class Fib {
 
-    private int n0, n1;
+    private int a0, a1;
 
     public Fib(int first, int second) {
-        n0 = first;
-        n1 = second;
+        a0 = first;
+        a1 = second;
     }
 
     public Fib() {
-        n0 = 0;
-        n1 = 1;
+        a0 = 0;
+        a1 = 1;
     }
 
     public int f(int j) {
         int tmp;
-        int a = n0, b = n1;
+        int a = a0, b = a1;
         for (int i = 0; i < j; i++) {
             tmp = b;
             b += a;
-            if (i+1<j)
+            if (i+1<=j)
                 a = tmp;
 
         }
@@ -32,7 +32,7 @@ public class Fib {
     public int fRec(int x, int y, int j) {
         int a = x, b = y;
         int tmp;
-        if (j > 1) {
+        if (j >= 1) {
             tmp = b;
             b += a;
             a = tmp;
@@ -43,7 +43,7 @@ public class Fib {
 
 
     public int fRec(int j) {
-        return this.fRec(n0, n1, j);
+        return this.fRec(a0, a1, j);
     }
 
 
@@ -59,14 +59,14 @@ public class Fib {
         Fib fib = new Fib(f0, f1);
 
         System.out.print("Iterative: ");
-        for(int i=0; i<n; i++) {
-            iterative = fib.f(i+1);
+        for(int i=0; i<=n; i++) {
+            iterative = fib.f(i);
             it_string = String.format("%s %d", it_string, iterative);
         } System.out.println(it_string);
 
         System.out.print("\nRecursive: ");
-        for(int i=0; i<n; i++) {
-            recursive = fib.fRec(i+1);
+        for(int i=0; i<=n; i++) {
+            recursive = fib.fRec(i);
             re_string = String.format("%s %d", re_string, recursive);
         } System.out.println(re_string);
     }
