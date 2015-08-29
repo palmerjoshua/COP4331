@@ -1,5 +1,6 @@
 package hw1.q3;
 
+import javax.xml.crypto.Data;
 import java.security.InvalidParameterException;
 import java.util.LinkedList;
 import java.util.regex.Matcher;
@@ -14,6 +15,10 @@ public class DataAnalyzer {
     public DataAnalyzer(String user_string) {
         dataList = new LinkedList<Integer>();
         newSequence(user_string);
+    }
+
+    public DataAnalyzer(LinkedList<Integer> in) {
+        newSequence(in);
     }
 
     public DataAnalyzer() {
@@ -32,6 +37,10 @@ public class DataAnalyzer {
         } else {
             throw new InvalidParameterException("Expected a sequence of integers.");
         }
+    }
+
+    public void newSequence(LinkedList<Integer> newList) {
+        dataList = new LinkedList<Integer>(newList);
     }
 
     private boolean valid_input(String user_input) {
