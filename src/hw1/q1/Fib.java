@@ -1,12 +1,23 @@
+/**
+ * @author Joshua Palmer
+ * Z: 23280034
+ * COP 4331
+ * HW1 q1
+ *
+ * Notes:
+ *  * Iterative function on line [LINE]
+ *
+ *  * Recursive function on line [LINE]
+ *
+ *  * Fibonacci function calls on lines [LINE] and [LINE]
+ *
+ */
 package hw1.q1;
 
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
- * @author Joshua Palmer
- * Takes two integers and uses them as the first two terms of a Fibonacci sequence.*/
+ * Takes two integers and uses them as the first two terms of a Fibonacci sequence.
+ */
 public class Fib {
 
     /** holds the first term of the sequence
@@ -18,23 +29,27 @@ public class Fib {
 
     /** Initializes the first two terms of the sequence with user-given values.
      * @param first The first term of the sequence
-     * @param second The second term of the sequence*/
+     * @param second The second term of the sequence
+     * @see #Fib() */
     public Fib(int first, int second) {
         a0 = first;
         a1 = second;
     }
 
     /** Initializes the first two terms of the sequence with default values of 0 and 1.
+     * @see #Fib(int, int)
      */
     public Fib() {
         a0 = 0;
         a1 = 1;
     }
 
-    /** Iterative method for finding the Jth number in the Fibonacci sequence.
-     *
+    /**
+     * Iterative method for finding the Jth number in the Fibonacci sequence.
      * @param j the index of the desired Fibonacci number.
+     * @throws IllegalArgumentException if j is negative
      * @return the Jth term of the sequence.
+     * @see #fRec(int)
      */
     public int f(int j) {
         if (j < 0) throw new IllegalArgumentException("j must not be negative.");
@@ -49,12 +64,13 @@ public class Fib {
         return a;
     }
 
-    /** Recursive method for finding the Jth term of a Fibonnaci sequence.
-     *
+    /**
+     * Recursive method for finding the Jth term of a Fibonacci sequence.
      * @param x The first term of the sequence.
      * @param y The second term of the sequence.
      * @param j The index of the desired Fibonacci number.
      * @return The Jth term of the sequence.
+     * @see #fRec(int)
      */
     private int fRec(int x, int y, int j) {
         int a = x, b = y;
@@ -68,37 +84,40 @@ public class Fib {
         return a;
     }
 
-    /** Public wrapper for the recursive method.
-     *
+    /**
+     * Public wrapper for the recursive method.
      * @param j The index of the desired Fibonacci number.
      * @return The Jth term of the sequence.
+     * @see #fRec(int, int, int)
+     * @see #f(int)
      */
     public int fRec(int j) {
         if (j < 0) throw new IllegalArgumentException("j must not be negative.");
         return this.fRec(a0, a1, j);
     }
 
-    /** Validates the command line arguments
-     *
-     * @param arg A command line argument.
-     * @return The argument as an int, or a default value of 1.
+    /**
+     * Validates a command line argument
+     * @param arg A command line argument
+     * @throws IllegalArgumentException If arg is not an integer
+     * @return The argument in integer form
      */
     private static int validateArg(String arg) {
-        int result = 1;
         try {
-            result = Integer.parseInt(arg);
+            return Integer.parseInt(arg);
         } catch (NumberFormatException e) {
-            System.err.println("Invalid argument: " + arg);
-            System.err.println("Defaulting to: " + result);
+            throw new IllegalArgumentException("Argument must be an integer.");
         }
-        return result;
     }
 
-    /** Computes the Fibonnaci sequence and generates a string for console output.
-     *
+    /**
+     * Computes a Fibonacci sequence, and generates a string for console output.
      * @param n The index of the last Fibonacci number to be displayed.
      * @param fib A Fib instance containing the first two numbers in the sequence.
      * @return A string containing output for both the iterative and recursive methods.
+     * @throws IllegalArgumentException if n is negative
+     * @see #f(int)
+     * @see #fRec(int)
      */
     private static String sequenceString(int n, Fib fib) {
         if (n < 0) throw new IllegalArgumentException("n must not be negative.");
@@ -107,7 +126,8 @@ public class Fib {
         String iterativeString = "Iterative: ",
                recursiveString = "Recursive: ";
 
-        for(int i=0; i<=n; i++) {
+        // iterative and recursive functions called in same loop, but build separate strings.
+        for (int i=0; i<=n; i++) {
             fibResult = fib.f(i);
             iterativeString = String.format("%s %d", iterativeString, fibResult);
 
@@ -118,17 +138,25 @@ public class Fib {
     }
 
     public static void main(String[] args) {
-        int f0, f1, n;
-        f0 = validateArg(args[0]);
-        f1 = validateArg(args[1]);
-         n = validateArg(args[2]);
-
-        Fib fib = new Fib(f0, f1);
-
+        int a0, a1, n;
         try {
+            a0 = validateArg(args[0]);
+            a1 = validateArg(args[1]);
+             n = validateArg(args[2]);
+        } catch (IndexOutOfBoundsException e1) {
+            System.err.println("Please enter a0, a1, and n on the command line.");
+            return;
+        } catch (IllegalArgumentException e2) {
+            System.err.println(e2.getMessage());
+            return;
+        }
+
+        Fib fib = new Fib(a0, a1);
+
+        try { // fib functions called on lines [LINE] and [LINE]
             System.out.println(sequenceString(n, fib));
-        } catch (IllegalArgumentException e) {
-            System.err.println("n must not be negative.");
+        } catch (IllegalArgumentException e3) {
+            System.err.println(e3.getMessage());
         }
     }
 }
