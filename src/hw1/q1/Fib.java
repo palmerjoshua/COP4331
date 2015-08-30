@@ -128,13 +128,10 @@ public class Fib {
 
         // iterative and recursive functions called in same loop, but build separate strings.
         for (int i=0; i<=n; i++) {
-            fibResult = fib.f(i);
-            iterativeString = String.format("%s %d", iterativeString, fibResult);
-
-            fibResult = fib.fRec(i);
-            recursiveString = String.format("%s %d", recursiveString, fibResult);
-
-        } return iterativeString + "\n" + recursiveString;
+            iterativeString = iterativeString + " " + fib.f(i);
+            recursiveString = recursiveString + " " + fib.fRec(i);
+        }
+        return iterativeString + "\n" + recursiveString;
     }
 
     public static void main(String[] args) {

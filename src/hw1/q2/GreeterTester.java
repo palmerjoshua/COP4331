@@ -11,7 +11,6 @@ public class GreeterTester
         System.out.println(g2.sayHello() + "\n");
     }
 
-
     public static void main(String[] args)
     {
         Greeter worldGreeter = new Greeter("World");

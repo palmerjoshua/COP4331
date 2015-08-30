@@ -75,7 +75,7 @@ public class DataAnalyzer {
     }
 
     private LinkedList<Integer> sortedDataList() {
-        LinkedList<Integer> sorted = new LinkedList<>(dataList);
+        LinkedList<Integer> sorted = new LinkedList<Integer>(dataList);
     sorted.sort(null);
     return sorted;
 }

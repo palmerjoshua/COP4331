@@ -21,7 +21,7 @@ public class DataAnalyzerTester {
     }
 
     private static LinkedList<Integer> stringToList(String userString) {
-        LinkedList<Integer> result = new LinkedList<>();
+        LinkedList<Integer> result = new LinkedList<Integer>();
         String[] splitString = userString.split(" ");
         for (String s: splitString) {
             result.add(Integer.parseInt(s));
