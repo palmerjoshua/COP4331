@@ -26,12 +26,21 @@ public class Greeter
         return "Hello, " + name + "!";
     }
 
+    /**
+     * Swaps the names of two Greeters
+     * @param other the Greeter with whom the current instance will swap names.
+     */
     public void swapNames(Greeter other) {
         String tmp = this.name;
         this.name = other.name;
         other.name = tmp;
     }
 
+    /**
+     * Creates a new Greeter with a qualifier prepended to its name.
+     * @param qualifier The qualifier to be added to its name.
+     * @return A new Greeter object
+     */
     public Greeter createQualifiedGreeter(String qualifier) {
         return new Greeter(qualifier + ' ' + this.name);
     }

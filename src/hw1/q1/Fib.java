@@ -122,11 +122,9 @@ public class Fib {
     private static String sequenceString(int n, Fib fib) {
         if (n < 0) throw new IllegalArgumentException("n must not be negative.");
 
-        int fibResult;
         String iterativeString = "Iterative: ",
                recursiveString = "Recursive: ";
 
-        // iterative and recursive functions called in same loop, but build separate strings.
         for (int i=0; i<=n; i++) {
             iterativeString = iterativeString + " " + fib.f(i);
             recursiveString = recursiveString + " " + fib.fRec(i);
