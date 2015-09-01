@@ -1,6 +1,5 @@
 package hw1.q3;
 
-import javax.xml.crypto.Data;
 import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -27,7 +26,7 @@ public class DataAnalyzerTester {
     }
 
     private static String makeOutputString(DataAnalyzer da) {
-        String result = da.getSequence() + "\n";
+        String result = "Sequence: " + da.getSequence() + "\n";
         result += "Min: " + da.min() + "\n";
         result += "Max: " + da.max() + "\n";
         result += "Average: " + da.average();

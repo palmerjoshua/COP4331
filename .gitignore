@@ -2,4 +2,5 @@
 *.iml
 out
 *_instructions.txt
+*_output.txt
 src/hw1/test
