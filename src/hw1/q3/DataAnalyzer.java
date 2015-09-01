@@ -1,5 +1,6 @@
 package hw1.q3;
 
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class DataAnalyzer {
@@ -66,34 +67,18 @@ public class DataAnalyzer {
      * Computes the minimum value in the dataList.
      * @return The smallest value stored in the dataList.
      * @see #max()
-     * @see #sortedDataList()
      */
     public int min() {
-        LinkedList<Integer> sorted = sortedDataList();
-        return sorted.getFirst();
+        return Collections.min(dataList);
     }
 
     /**
      * Computes the maximum value in the dataList.
      * @return The largest value stored in the dataList.
      * @see #min()
-     * @see #sortedDataList()
      */
     public int max() {
-        LinkedList<Integer> sorted = sortedDataList();
-        return sorted.getLast();
-    }
-
-    /**
-     * Creates a new list containing the values in dataList sorted in ascending order.
-     * @return A new, sorted dataList.
-     * @see #min()
-     * @see #max()
-     */
-    private LinkedList<Integer> sortedDataList() {
-        LinkedList<Integer> sorted = new LinkedList<Integer>(dataList);
-        sorted.sort(null);
-        return sorted;
+        return Collections.max(dataList);
     }
 
     /**

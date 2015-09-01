@@ -41,7 +41,7 @@ public class DataAnalyzerTester {
             }
         }
         return result;
-    }
+    }// todo consider exceptions just for show*
 
     /**
      * Helper function to create a string for printing to the console and saving to a file.
@@ -56,6 +56,12 @@ public class DataAnalyzerTester {
         return result;
     } // todo make header for output file
 
+    /**
+     * Uses a simple cli to receive sequences of numbers from the user
+     * and write data to the console and a file.
+     * @param args No command line arguments are used.
+     * @throws IOException If opening the output file fails.
+     */
     public static void main(String[] args) throws IOException {
         LinkedList<Integer> inputList;
         DataAnalyzer da = new DataAnalyzer();
@@ -65,15 +71,17 @@ public class DataAnalyzerTester {
 
         String userInput = "";
         while (!userInput.equals("q")) {
-            System.out.println("(Press 'q' to quit)");
+            System.out.println("(Enter 'q' to quit)");
             System.out.print("Enter a sequence of numbers separated by spaces: ");
 
             userInput = in.nextLine().toLowerCase().trim();
             if (validInput(userInput)){
                 if (!userInput.equals("q")) {
+
                     inputList = stringToList(userInput);
                     da.newSequence(inputList);
                     output = makeOutputString(da);
+
                     pw = new PrintWriter("q3_output.txt");
                     System.out.println(output);
                     pw.println(output);
