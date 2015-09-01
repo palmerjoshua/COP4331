@@ -58,8 +58,7 @@ public class Fib {
         for (int i = 0; i < j; i++) {
             tmp = b;
             b += a;
-            if (i+1<=j)
-                a = tmp;
+            a = tmp;
         }
         return a;
     }
