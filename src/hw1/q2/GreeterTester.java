@@ -12,12 +12,12 @@ public class GreeterTester
     {
         Greeter worldGreeter = new Greeter("World");
         Greeter joshGreeter = new Greeter("Josh");
+
+        printGreetings(worldGreeter, joshGreeter);
+        worldGreeter.swapNames(joshGreeter);
         printGreetings(worldGreeter, joshGreeter);
 
-        joshGreeter.swapNames(worldGreeter);
-        printGreetings(worldGreeter, joshGreeter);
-
-        Greeter qJosh = joshGreeter.createQualifiedGreeter("The Honorable ");
+        Greeter qJosh = worldGreeter.createQualifiedGreeter("Squeaky");
         System.out.println(qJosh.sayHello());
     }
 }
