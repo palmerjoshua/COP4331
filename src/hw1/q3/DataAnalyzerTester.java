@@ -30,6 +30,7 @@ public class DataAnalyzerTester {
     /**
      * Converts a string of integers into a LinkedList of integers.
      * @param userString An already-validated string of integers.
+     * @throws IllegalArgumentException if userString cannot be parsed into an int.
      * @return A LinkedList of integers.
      */
     private static LinkedList<Integer> stringToList(String userString) {
@@ -37,22 +38,27 @@ public class DataAnalyzerTester {
         String[] splitString = userString.split(" ");
         for (String s: splitString) {
             if (s.length() > 0) {
-                result.add(Integer.parseInt(s)); // no try-catch because input already validated
+                try {
+                    result.add(Integer.parseInt(s));
+                } catch (NumberFormatException e) {
+                    throw new IllegalArgumentException("Sequence element must be integer.");
+                }
             }
         }
         return result;
-    }// todo consider exceptions just for show*
+    }
 
     /**
      * Helper function to create a string for printing to the console and saving to a file.
      * @param da A DataAnalyzer whose dataList has already been populated.
      * @return A string containing the DataAnalyzer's data.
      */
-    private static String makeOutputString(DataAnalyzer da) {
-        String result = "Sequence: " + da.getSequence() + "\n";
-        result += "Min: " + da.min() + "\n";
-        result += "Max: " + da.max() + "\n";
-        result += "Average: " + da.average();
+    private static String[] makeOutputStrings(DataAnalyzer da) {
+        String[] result = new String[4];
+        result[0] = "Sequence: " + da.getSequence();
+        result[1] = "Min: " + da.min();
+        result[2] = "Max: " + da.max();
+        result[3] = "Average: " + da.average();
         return result;
     } // todo make header for output file
 
@@ -67,7 +73,7 @@ public class DataAnalyzerTester {
         DataAnalyzer da = new DataAnalyzer();
         Scanner in = new Scanner(System.in);
         PrintWriter pw;
-        String output;
+        String[] outputStrings;
 
         String userInput = "";
         while (!userInput.equals("q")) {
@@ -77,14 +83,20 @@ public class DataAnalyzerTester {
             userInput = in.nextLine().toLowerCase().trim();
             if (validInput(userInput)){
                 if (!userInput.equals("q")) {
-
-                    inputList = stringToList(userInput);
+                    try {
+                        inputList = stringToList(userInput);
+                    } catch (IllegalArgumentException e2) {
+                        // will never happen thanks to regex
+                        System.err.println(e2.getMessage());
+                        continue;
+                    }
                     da.newSequence(inputList);
-                    output = makeOutputString(da);
-
+                    outputStrings = makeOutputStrings(da);
                     pw = new PrintWriter("q3_output.txt");
-                    System.out.println(output);
-                    pw.println(output);
+                    for (String os: outputStrings) {
+                        System.out.println(os);
+                        pw.println(os);
+                    }
                     pw.close();
                 }
             } else {

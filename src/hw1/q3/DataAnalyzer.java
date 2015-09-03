@@ -2,6 +2,7 @@ package hw1.q3;
 
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 public class DataAnalyzer {
 
@@ -38,9 +39,8 @@ public class DataAnalyzer {
      * @see #dataList
      */
     public String getSequence() {
+        if(dataList.isEmpty()) {return "";}
         int length = dataList.size();
-        if (length < 1) {return "";}
-
         String[] sequence_holder = new String[length];
         for(int i=0; i<length; i++){
             sequence_holder[i] = dataList.get(i).toString();
@@ -54,14 +54,13 @@ public class DataAnalyzer {
      * @see #dataList
      */
     public double average() {
-        int length = dataList.size();
-        if (length < 1){return 0.0;}
+        if (dataList.isEmpty()) return 0.0;
         int sum = 0;
         for (int i: dataList) {
             sum += i;
         }
-        return (double)sum / (double)length;
-    }// todo test what happens when dataList is empty for all these functions
+        return (double)sum / (double)dataList.size();
+    }
 
     /**
      * Computes the minimum value in the dataList.
@@ -69,7 +68,11 @@ public class DataAnalyzer {
      * @see #max()
      */
     public int min() {
-        return Collections.min(dataList);
+        try {
+            return Collections.min(dataList);
+        } catch (NoSuchElementException e) {
+            return 0;
+        }
     }
 
     /**
@@ -78,7 +81,11 @@ public class DataAnalyzer {
      * @see #min()
      */
     public int max() {
-        return Collections.max(dataList);
+        try{
+            return Collections.max(dataList);
+        } catch (NoSuchElementException e) {
+            return 0;
+        }
     }
 
     /**
