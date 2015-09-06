@@ -1,8 +1,8 @@
-/**
- * @author Joshua Palmer
+/*
+ * Joshua Palmer
  * Z: 23280034
- * COP 4331
- * HW1 q1
+ * COP 4331 001
+ * HW1 q1 - Fib.java
  *
  * Notes:
  *  Iterative function defined on line 58

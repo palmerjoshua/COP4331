@@ -1,3 +1,12 @@
+/*
+ * Joshua Palmer
+ * Z: 23280034
+ * COP 4331 001
+ * HW1 q3 - DataAnalyzer.java
+ *
+ * https://github.com/palmerjoshua/COP4331
+ */
+
 package hw1.q3;
 
 import java.util.Collections;
@@ -9,28 +18,28 @@ public class DataAnalyzer {
     /**
      * Constructor that initializes dataList with an existing LinkedList.
      * @param in The LinkedList whose data will populate the DataAnalyzer.
-     * @see #newSequence(LinkedList)
-     *
+     * @see #dataList
      */
     public DataAnalyzer(LinkedList<Integer> in) {
-        newSequence(in);
+        if (in.isEmpty()) throw new IllegalArgumentException("Input list is empty.");
+        dataList = new LinkedList<Integer>(in);
     }
 
     /**
-     * Default constructor that initializes dataList as an empty list.
-     * @see #dataList
+     * Default constructor that does nothing but throw an exception.
+     * @throws IllegalArgumentException if a non-empty LinkedList is not provided as an argument.
+     * @see #DataAnalyzer(LinkedList)
      */
     public DataAnalyzer() {
-        dataList = new LinkedList<Integer>();
+        throw new IllegalArgumentException("Must initialize DataAnalyzer with a non-empty LinkedList.");
     }
 
     /**
-     * Re-initializes dataList with a new LinkedList
-     * @param newList The LinkedList whose data will populate the DataAnalyzer.
-     * @see #dataList
+     * Determines whether the DataAnalyzer has any data to analyze.
+     * @return True if dataList is empty
      */
-    public void newSequence(LinkedList<Integer> newList) {
-        dataList = new LinkedList<Integer>(newList);
+    public boolean isEmpty() {
+        return dataList.isEmpty();
     }
 
     /**
@@ -39,7 +48,7 @@ public class DataAnalyzer {
      * @see #dataList
      */
     public String getSequence() {
-        if(dataList.isEmpty()) {return "";}
+        if(isEmpty()) {return "";}
         int length = dataList.size();
         String[] sequence_holder = new String[length];
         for(int i=0; i<length; i++){
@@ -54,7 +63,7 @@ public class DataAnalyzer {
      * @see #dataList
      */
     public double average() {
-        if (dataList.isEmpty()) return 0.0;
+        if (isEmpty()) return 0.0;
         int sum = 0;
         for (int i: dataList) {
             sum += i;
