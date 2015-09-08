@@ -1,15 +1,19 @@
-/**
- * @author Joshua Palmer
+/*
+ * Joshua Palmer
  * Z: 23280034
- * COP 4331
- * HW1 q1
+ * COP 4331 001
+ * HW1 q1 - Fib.java
  *
  * Notes:
- *  * Iterative function on line [LINE]
+ *  Iterative function defined on line 58
  *
- *  * Recursive function on line [LINE]
+ *  Recursive function defined on line 78
  *
- *  * Fibonacci function calls on lines [LINE] and [LINE]
+ *  Fibonacci function calls on lines 132 and 133
+ *
+ *  Static helper functions are used to validate input and display output
+ *
+ *  https://github.com/palmerjoshua/COP4331
  *
  */
 package hw1.q1;
@@ -92,11 +96,11 @@ public class Fib {
      */
     public int fRec(int j) {
         if (j < 0) throw new IllegalArgumentException("j must not be negative.");
-        return this.fRec(a0, a1, j);
+        return fRec(a0, a1, j);
     }
 
     /**
-     * Validates a command line argument
+     * Helper function that validates a command line argument
      * @param arg A command line argument
      * @throws IllegalArgumentException If arg is not an integer
      * @return The argument in integer form
@@ -110,7 +114,7 @@ public class Fib {
     }
 
     /**
-     * Computes a Fibonacci sequence, and generates a string for console output.
+     * Helper function that computes a Fibonacci sequence and generates a string for console output.
      * @param n The index of the last Fibonacci number to be displayed.
      * @param fib A Fib instance containing the first two numbers in the sequence.
      * @return A string containing output for both the iterative and recursive methods.
@@ -125,8 +129,8 @@ public class Fib {
                recursiveString = "Recursive: ";
 
         for (int i=0; i<=n; i++) {
-            iterativeString = iterativeString + " " + fib.f(i);
-            recursiveString = recursiveString + " " + fib.fRec(i);
+            iterativeString += " " + fib.f(i);
+            recursiveString += " " + fib.fRec(i);
         }
         return iterativeString + "\n" + recursiveString;
     }
@@ -147,7 +151,7 @@ public class Fib {
 
         Fib fib = new Fib(a0, a1);
 
-        try { // fib functions called on lines [LINE] and [LINE]
+        try { // fib functions called on lines 132 and 133
             System.out.println(sequenceString(n, fib));
         } catch (IllegalArgumentException e3) {
             System.err.println(e3.getMessage());

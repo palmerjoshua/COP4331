@@ -1,8 +1,21 @@
+/*
+ * Joshua Palmer
+ * Z: 23280034
+ * COP 4331 001
+ * HW1 q2 - GreeterTester.java
+ *
+ * https://github.com/palmerjoshua/COP4331
+ *
+ */
 package hw1.q2;
 
 public class GreeterTester
 {
-
+    /**
+     * Helper function for printing greetings.
+     * @param g1 first greeter whose greeting will be printed.
+     * @param g2 second greeter whose greeting will be printed.
+     */
     private static void printGreetings(Greeter g1, Greeter g2) {
         System.out.println(g1.sayHello());
         System.out.println(g2.sayHello() + "\n");
@@ -17,8 +30,8 @@ public class GreeterTester
         worldGreeter.swapNames(joshGreeter);
         printGreetings(worldGreeter, joshGreeter);
 
-        Greeter qJosh = worldGreeter.createQualifiedGreeter("Squeaky");
-        System.out.println(qJosh.sayHello());
+        Greeter qualified = worldGreeter.createQualifiedGreeter("Squeaky");
+        System.out.println(qualified.sayHello());
     }
 }
 

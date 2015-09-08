@@ -1,35 +1,45 @@
+/*
+ * Joshua Palmer
+ * Z: 23280034
+ * COP 4331 001
+ * HW1 q3 - DataAnalyzer.java
+ *
+ * https://github.com/palmerjoshua/COP4331
+ */
+
 package hw1.q3;
 
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 public class DataAnalyzer {
 
     /**
      * Constructor that initializes dataList with an existing LinkedList.
      * @param in The LinkedList whose data will populate the DataAnalyzer.
-     * @see #newSequence(LinkedList)
-     *
+     * @see #dataList
      */
     public DataAnalyzer(LinkedList<Integer> in) {
-        newSequence(in);
+        if (in.isEmpty()) throw new IllegalArgumentException("Input list is empty.");
+        dataList = new LinkedList<Integer>(in);
     }
 
     /**
-     * Default constructor that initializes dataList as an empty list.
-     * @see #dataList
+     * Default constructor that does nothing but throw an exception.
+     * @throws IllegalArgumentException if a non-empty LinkedList is not provided as an argument.
+     * @see #DataAnalyzer(LinkedList)
      */
     public DataAnalyzer() {
-        dataList = new LinkedList<Integer>();
+        throw new IllegalArgumentException("Must initialize DataAnalyzer with a non-empty LinkedList.");
     }
 
     /**
-     * Re-initializes dataList with a new LinkedList
-     * @param newList The LinkedList whose data will populate the DataAnalyzer.
-     * @see #dataList
+     * Determines whether the DataAnalyzer has any data to analyze.
+     * @return True if dataList is empty
      */
-    public void newSequence(LinkedList<Integer> newList) {
-        dataList = new LinkedList<Integer>(newList);
+    public boolean isEmpty() {
+        return dataList.isEmpty();
     }
 
     /**
@@ -38,9 +48,8 @@ public class DataAnalyzer {
      * @see #dataList
      */
     public String getSequence() {
+        if(isEmpty()) {return "";}
         int length = dataList.size();
-        if (length < 1) {return "";}
-
         String[] sequence_holder = new String[length];
         for(int i=0; i<length; i++){
             sequence_holder[i] = dataList.get(i).toString();
@@ -54,14 +63,13 @@ public class DataAnalyzer {
      * @see #dataList
      */
     public double average() {
-        int length = dataList.size();
-        if (length < 1){return 0.0;}
+        if (isEmpty()) return 0.0;
         int sum = 0;
         for (int i: dataList) {
             sum += i;
         }
-        return (double)sum / (double)length;
-    }// todo test what happens when dataList is empty for all these functions
+        return (double)sum / (double)dataList.size();
+    }
 
     /**
      * Computes the minimum value in the dataList.
@@ -69,7 +77,11 @@ public class DataAnalyzer {
      * @see #max()
      */
     public int min() {
-        return Collections.min(dataList);
+        try {
+            return Collections.min(dataList);
+        } catch (NoSuchElementException e) {
+            return 0;
+        }
     }
 
     /**
@@ -78,7 +90,11 @@ public class DataAnalyzer {
      * @see #min()
      */
     public int max() {
-        return Collections.max(dataList);
+        try{
+            return Collections.max(dataList);
+        } catch (NoSuchElementException e) {
+            return 0;
+        }
     }
 
     /**

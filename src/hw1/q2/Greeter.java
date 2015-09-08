@@ -1,8 +1,17 @@
+/*
+ * Joshua Palmer
+ * Z: 23280034
+ * COP 4331 001
+ * HW1 q2 - Greeter.java
+ *
+ * https://github.com/palmerjoshua/COP4331
+ *
+ */
+
 package hw1.q2;
 /**
  A class for producing simple greetings.
  */
-
 public class Greeter
 {
     /**

@@ -1,0 +1,15 @@
+Answer: x == 3
+
+Greeter g2 is set to null in the first if-block.
+Even though both greeters have the same name,
+the != operator compares their references
+instead of their values. Since they are different
+objects with their own addresses in memory, the
+condition in the if-statement is true.
+
+Because g2 is set to null, a NullPointerException
+is thrown when the code tries to call g2.sayHello().
+Thus, x begins as 0, is set to 1 right before
+the method call that throws the exception, is
+incremented to 2 in the catch-block, and is
+incremented to 3 in the finally-block.
