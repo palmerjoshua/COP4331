@@ -17,13 +17,4 @@ public class Product {
     public String getUPC() {return upc;}
     public String getName() {return name;}
     public String getPrice() {return price.toString();}
-
-    public String[] getProductDetails() {
-        String[] details = new String[3];
-        details[0] = getUPC();
-        details[1] = getName();
-        details[2] = getPrice();
-        return details;
-    }
-
 }

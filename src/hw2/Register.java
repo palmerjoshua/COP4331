@@ -1,6 +1,5 @@
 package hw2;
 
-
 import java.util.Scanner;
 
 public class Register {
@@ -37,8 +36,8 @@ public class Register {
     public void checkOut() {
         Scanner in = new Scanner(System.in);
         String userInput;
-        double payment = 0.0;
-        while (currentTransaction.getBalanceDouble() > 0.0) {
+        double payment = 0.0, balance = currentTransaction.getBalanceDouble();
+        while (balance > 0.0) {
             System.out.println("\nBalance: $" + currentTransaction.getBalanceString());
             System.out.print("Enter payment: ");
             userInput = in.nextLine().trim();
@@ -48,16 +47,19 @@ public class Register {
                 System.out.println("Invalid input for payment. Example: enter 1.50 to pay $1.50");
                 continue;
             }
-            currentTransaction.addPayment(payment);
+            balance = currentTransaction.addPayment(payment);
         }
+    }
+
+    void printReceipt() {
+        System.out.println("\n====RECEIPT====");
+        System.out.println(currentTransaction.getSummary());
     }
 
     public void startNewTransaction() {
         currentTransaction = new Transaction();
         scanItems();
         checkOut();
-        System.out.println(currentTransaction.getSummary());
+        printReceipt();
     }
-
-
 }

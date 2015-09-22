@@ -39,7 +39,7 @@ public class Transaction {
     }
 
     public double addPayment(double payment) {
-        balance = balance.subtract(new BigDecimal(""+payment));
+        balance = balance.subtract(new BigDecimal(""+payment)).setScale(2, BigDecimal.ROUND_HALF_UP);
         return Double.parseDouble(balance.toString());
     }
 
@@ -54,11 +54,11 @@ public class Transaction {
             summary += "UPC: " + item.getUPC() + "\n";
             summary += "Price: $" + item.getPrice() + "\n";
         }
-        summary += "Total: $" + total.toString() + "\n\n";
+        summary += "\nTotal: $" + total.toString() + "\n";
         BigDecimal payment = total.subtract(balance);
         summary += "Payment: $" + payment.toString();
         if (getBalanceDouble() < 0.0) {
-            BigDecimal change = payment.subtract(total);
+            BigDecimal change = payment.subtract(total).setScale(2, BigDecimal.ROUND_HALF_UP);
             summary += "\nChange: $" + change.toString();
         }
         return summary;
