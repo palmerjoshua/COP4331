@@ -1,27 +1,22 @@
 package hw2;
 
-import java.text.DecimalFormat;
+import java.math.BigDecimal;
 
 public class Product {
     private String upc;
     private String name;
-    private DecimalFormat priceFormat;
-    private double price;
+    private BigDecimal price;
+
 
     public Product(String upc, String name, double price) {
-        priceFormat = new DecimalFormat("#.00");
         this.upc = upc;
         this.name = name;
-        this.price = price;
-    }
-
-    public Product(){
-        throw new IllegalArgumentException("No product details given.");
+        this.price = new BigDecimal(""+price).setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
     public String getUPC() {return upc;}
     public String getName() {return name;}
-    public String getPrice() {return priceFormat.format(price);}
+    public String getPrice() {return price.toString();}
 
     public String[] getProductDetails() {
         String[] details = new String[3];

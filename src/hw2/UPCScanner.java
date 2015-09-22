@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class UPCScanner {
     private Scanner scanner;
-    private final Pattern upcPattern = Pattern.compile("^\\d{12}$|^\\s+$");
+    private final Pattern upcPattern = Pattern.compile("^\\d{12}$|^p$");
     public UPCScanner() {
         scanner = new Scanner(System.in);
     }
@@ -19,9 +19,6 @@ public class UPCScanner {
 
     public String scan() {
         String result = scanner.nextLine().trim();
-        if (validUPC(result)) {
-            return result;
-        }
-        return "";
+        return validUPC(result) ? result : "";
     }
 }
