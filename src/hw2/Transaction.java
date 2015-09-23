@@ -38,13 +38,12 @@ public class Transaction {
         return balance.toString();
     }
 
-    public double addPayment(double payment) {
+    public void addPayment(double payment) {
         balance = balance.subtract(new BigDecimal(""+payment)).setScale(2, BigDecimal.ROUND_HALF_UP);
-        return Double.parseDouble(balance.toString());
     }
 
-    public boolean isEmpty() {
-        return items.isEmpty();
+    public boolean isUnpaid() {
+        return balance.signum() == 1;
     }
 
     public String getSummary() {

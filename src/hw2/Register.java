@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Register {
     private Inventory inventory;
     private Transaction currentTransaction;
-    public UPCScanner scanner;
+    private UPCScanner scanner;
 
     public Register() {
         currentTransaction = new Transaction();
@@ -36,8 +36,8 @@ public class Register {
     public void checkOut() {
         Scanner in = new Scanner(System.in);
         String userInput;
-        double payment = 0.0, balance = currentTransaction.getBalanceDouble();
-        while (balance > 0.0) {
+        double payment = 0.0;
+        while (currentTransaction.isUnpaid()) {
             System.out.println("\nBalance: $" + currentTransaction.getBalanceString());
             System.out.print("Enter payment: ");
             userInput = in.nextLine().trim();
@@ -47,13 +47,17 @@ public class Register {
                 System.out.println("Invalid input for payment. Example: enter 1.50 to pay $1.50");
                 continue;
             }
-            balance = currentTransaction.addPayment(payment);
+            currentTransaction.addPayment(payment);
         }
     }
 
-    void printReceipt() {
-        System.out.println("\n====RECEIPT====");
-        System.out.println(currentTransaction.getSummary());
+    public void printReceipt() {
+        if (currentTransaction.isUnpaid()) {
+            System.out.println("Items have not been paid for. No receipt available.");
+        } else {
+            System.out.println("\n====RECEIPT====");
+            System.out.println(currentTransaction.getSummary());
+        }
     }
 
     public void startNewTransaction() {
