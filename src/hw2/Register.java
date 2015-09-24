@@ -13,19 +13,31 @@ public class Register {
         inventory = new Inventory();
     }
 
+    /**
+     * Adds a product to the inventory.
+     * @param newProduct product to be added
+     */
     public void addToInventory(Product newProduct) {
         inventory.addProduct(newProduct);
     }
 
+    /**
+     * Uses the UPCScanner to find items from the inventory,
+     * add them to the current transaction, and display their
+     * details to the console.
+     */
     public void scanItems() {
         String currentUPC = "";
+        Product purchasedItem;
+
         while (!currentUPC.equals("p")) {
             System.out.println("(Enter 'p' to pay)");
             System.out.print("Enter 12-digit UPC: ");
 
             currentUPC = scanner.scan().trim().toLowerCase();
             if (inventory.productExists(currentUPC)) {
-                Product purchasedItem = inventory.getProduct(currentUPC);
+                showProductDetails(currentUPC);
+                purchasedItem = inventory.getProduct(currentUPC);
                 currentTransaction.addItem(purchasedItem);
             } else if (!currentUPC.equals("p")) {
                 System.out.println("Item does not exist, or invalid UPC given.");
@@ -33,24 +45,58 @@ public class Register {
         }
     }
 
+    /**
+     * Helper function to display a Products details.
+     * @param upc id of the Product to be displayed.
+     */
+    private void showProductDetails(String upc) {
+        Product product = inventory.getProduct(upc);
+        String[] details = product.getDetails();
+        System.out.println();
+        System.out.println(String.join("\n", details));
+        System.out.println();
+    }
+
+    /**
+     * Displays the current balance, and
+     * uses a Scanner to get the payment amount.
+     * @param in Scanner to allow CLI input.
+     * @return The user's input String.
+     */
+    private String getPayment(Scanner in) {
+        String amountLabel;
+        if (currentTransaction.getBalanceDouble() == currentTransaction.getTotalDouble()) {
+            amountLabel = "\nTotal: $";
+        } else {
+            amountLabel = "\nBalance: $";
+        }
+        System.out.println(amountLabel + currentTransaction.getBalanceString());
+        System.out.print("Enter payment: ");
+        return in.nextLine().trim();
+    }
+
+    /**
+     * Uses a Scanner to receive payment until payment >= balance.
+     */
     public void checkOut() {
-        Scanner in = new Scanner(System.in);
+        double payment;
         String userInput;
-        double payment = 0.0;
+        Scanner in = new Scanner(System.in);
         while (currentTransaction.isUnpaid()) {
-            System.out.println("\nBalance: $" + currentTransaction.getBalanceString());
-            System.out.print("Enter payment: ");
-            userInput = in.nextLine().trim();
+            userInput = getPayment(in);
             try {
                 payment = Double.parseDouble(userInput);
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input for payment. Example: enter 1.50 to pay $1.50");
+                System.out.println("Invalid input. Example: enter 1.50 to pay $1.50");
                 continue;
             }
             currentTransaction.addPayment(payment);
         }
     }
 
+    /**
+     * Prints an itemized receipt, including the total and the change (if any).
+     */
     public void printReceipt() {
         if (currentTransaction.isUnpaid()) {
             System.out.println("Items have not been paid for. No receipt available.");
@@ -60,6 +106,9 @@ public class Register {
         }
     }
 
+    /**
+     * Begins a new transaction.
+     */
     public void startNewTransaction() {
         currentTransaction = new Transaction();
         scanItems();
