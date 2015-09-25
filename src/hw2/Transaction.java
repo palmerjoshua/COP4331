@@ -89,7 +89,7 @@ public class Transaction {
     public String getSummary() {
         String summary = "";
         for (Product item : items.values()) {
-            summary += String.join("\n", item.getDetails());
+            summary += String.join("\n", item.getDetails()) + "\n";
         }
 
         summary += "\n\nTotal: $" + getTotalString() + "\n";

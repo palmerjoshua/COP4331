@@ -90,7 +90,12 @@ public class Register {
                 System.out.println("Invalid input. Example: enter 1.50 to pay $1.50");
                 continue;
             }
-            currentTransaction.addPayment(payment);
+            if (payment <= 0.01) {
+                System.out.println("Invalid input. Must pay >= $0.01");
+            } else {
+                currentTransaction.addPayment(payment);
+            }
+
         }
     }
 
