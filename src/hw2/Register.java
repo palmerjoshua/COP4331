@@ -1,10 +1,17 @@
+/*Joshua Palmer    Z23280034
+* COP 4331 001
+* Homework 2 Question 4
+*/
 package hw2;
 
 import java.util.Scanner;
 
 public class Register {
+    /**Stores records of all products*/
     private Inventory inventory;
+    /**Stores record of the products currently being purchased*/
     private Transaction currentTransaction;
+    /**Gets UPC number from Products*/
     private UPCScanner scanner;
 
     public Register() {

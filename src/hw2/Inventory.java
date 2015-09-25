@@ -1,3 +1,7 @@
+/*Joshua Palmer    Z23280034
+* COP 4331 001
+* Homework 2 Question 4
+*/
 package hw2;
 
 import java.util.HashMap;

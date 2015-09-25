@@ -1,11 +1,18 @@
+/*Joshua Palmer    Z23280034
+* COP 4331 001
+* Homework 2 Question 4
+*/
 package hw2;
 
 import java.math.BigDecimal;
 
 public class Product {
-    private String upc; // string of 12-digits
+    /**Unique identifying 12-digit number*/
+    private String upc;
+    /**Product name*/
     private String name;
-    private BigDecimal price; // better precision than floating point math
+    /**Product price in a more precise data structure*/
+    private BigDecimal price;
 
     /**
      * Initializes a product with the given information.

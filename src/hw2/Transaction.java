@@ -1,3 +1,7 @@
+/*Joshua Palmer    Z23280034
+* COP 4331 001
+* Homework 2 Question 4
+*/
 package hw2;
 
 import java.math.BigDecimal;
@@ -9,6 +13,7 @@ public class Transaction {
      * Key: UPC number    Value: Product
      */
     private HashMap<String, Product> items;
+    /**Stores total and current balance in a more precise data structure*/
     private BigDecimal total, balance;
 
     public Transaction(){
