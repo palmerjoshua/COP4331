@@ -3,11 +3,13 @@ import junit.framework.TestCase;
 
 public class ComplexTest extends TestCase {
 
-    private Complex c;
+    private Complex c, c2, c3;
 
     public void setUp() throws Exception {
         super.setUp();
         c = new Complex(20, 4);
+        c2 = new Complex(0, -5);
+        c3 = new Complex(-4, 0.34);
     }
 
     public void testAdd() {
@@ -37,8 +39,13 @@ public class ComplexTest extends TestCase {
     }
 
     public void testToString() {
-        String s = this.c.toString();
-        assertEquals("20 + 4i", s);
+        String s = this.c.toString(),
+                s2 = this.c2.toString(),
+                s3 = this.c3.toString();
+        String joined = String.join("|", s, s2, s3);
+        String expected = "20 + 4i|-5i|-4 + 0.34i";
+
+        assertEquals(expected, joined);
     }
 
     public void testConj() {

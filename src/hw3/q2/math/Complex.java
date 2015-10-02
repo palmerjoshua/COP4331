@@ -36,11 +36,20 @@ public class Complex {
         return imaginary;
     }
 
-    public String toString() { // todo if real is zero
-        String formattedReal = format.format(real);
-        String sep = (imaginary > 0) ? " + " : " - ";
-        String formattedImaginary = (imaginary > 0) ? format.format(imaginary) : format.format(-imaginary);
-        return formattedReal + ((imaginary!=0) ? sep + formattedImaginary + "i" : "");
+    private String realString() {
+        return (real!=0) ? format.format(real) : "";
+    }
+
+    private String sepString() {
+        return (imaginary != 0 && real != 0) ? ((imaginary > 0) ? " + " : " - ") : "";
+    }
+
+    private String imaginaryString() {  // todo if real is zero and imaginary is negative
+        return (imaginary!=0) ? ((imaginary > 0) ? format.format(imaginary) : format.format(-imaginary)) + "i" : "";
+    }
+
+    public String toString() {
+        return realString() + sepString() + imaginaryString();
     }
 
     public boolean equals(Complex c2) {
