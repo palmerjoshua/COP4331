@@ -36,7 +36,7 @@ public class Complex {
         return imaginary;
     }
 
-    public String toString() {
+    public String toString() { // todo if real is zero
         String formattedReal = format.format(real);
         String sep = (imaginary > 0) ? " + " : " - ";
         String formattedImaginary = (imaginary > 0) ? format.format(imaginary) : format.format(-imaginary);
@@ -45,5 +45,15 @@ public class Complex {
 
     public boolean equals(Complex c2) {
         return real == c2.real && imaginary == c2.imaginary;
+    }
+
+    public static void main(String[] args) {
+        Complex c1 = new Complex(2, 4),
+                c2 = new Complex(-1, 5.3),
+                c3 = new Complex(4.5, -5.1);
+        System.out.println(c1.toString());
+        System.out.println(c2.toString());
+        System.out.println(c3.toString());
+
     }
 }
