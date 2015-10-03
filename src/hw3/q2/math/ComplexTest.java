@@ -26,8 +26,9 @@ public class ComplexTest extends TestCase {
     }
 
     public void testEquals() {
-        Complex identical = new Complex(c.r(), c.i());
-        assertTrue(c.equals(identical) && identical.equals(c));
+        Complex c1 = new Complex(1, 2),
+                c2 = new Complex(1, 2);
+        assertTrue(c1.equals(c2) && c2.equals(c1));
     }
 
     public void testR() {
@@ -39,9 +40,9 @@ public class ComplexTest extends TestCase {
     }
 
     public void testToString() {
-        String   s = this.c.toString(),
-                s2 = this.c2.toString(),
-                s3 = this.c3.toString();
+        String   s = c.toString(),
+                s2 = c2.toString(),
+                s3 = c3.toString();
         String joined = String.join("|", s, s2, s3);
         String expected = "20 + 4i|-5i|-4 + 0.34i";
 
