@@ -3,7 +3,7 @@ package hw3.q2.math;
 
 import java.text.DecimalFormat;
 
-public class Complex {
+public class Complex implements Mathable {
     private double real, imaginary;
     private final DecimalFormat format = new DecimalFormat("0.#####");
 
@@ -11,7 +11,7 @@ public class Complex {
         this.real = real;
         this.imaginary = imaginary;
     }
-    public Complex(double real) { // todo must implement interface
+    public Complex(double real) {
         this.real = real;
         this.imaginary = 0.0;
     }
@@ -26,6 +26,14 @@ public class Complex {
 
     public Complex sub(Complex c2) {
         return new Complex(this.real-c2.real, this.imaginary-c2.imaginary);
+    }
+
+    public Complex mult(Complex c2) { // todo implement
+        return c2;
+    }
+
+    public Complex div(Complex c2) { // todo implement
+        return c2;
     }
 
     public double r() {
