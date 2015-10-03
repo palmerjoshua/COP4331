@@ -34,7 +34,10 @@ public class Complex implements Mathable {
         return new Complex(newReal, newImag);
     }
 
-    public Complex div(Complex c2) { // todo test
+    public Complex div(Complex c2) {
+        if (c2.r() == 0.0 && c2.i() == 0.0) {
+            throw new IllegalArgumentException("Attempted to divide by zero.");
+        }
         Complex denominatorConjugate = c2.conj(),
                 numerator = mult(denominatorConjugate),
                 denominator = c2.mult(denominatorConjugate);
