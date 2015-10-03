@@ -39,7 +39,7 @@ public class ComplexTest extends TestCase {
     }
 
     public void testToString() {
-        String s = this.c.toString(),
+        String   s = this.c.toString(),
                 s2 = this.c2.toString(),
                 s3 = this.c3.toString();
         String joined = String.join("|", s, s2, s3);
