@@ -30,9 +30,8 @@ public class Complex implements Mathable {
 
     public Complex mult(Complex c2) {
         double newReal = (real * c2.r()) - (imaginary * c2.i()),
-                newImaginary = (real * c2.i()) + (imaginary * c2.r());
-        return new Complex(newReal, newImaginary);
-
+               newImag = (real * c2.i()) + (imaginary * c2.r());
+        return new Complex(newReal, newImag);
     }
 
     public Complex div(Complex c2) { // todo implement
@@ -63,7 +62,6 @@ public class Complex implements Mathable {
         } else {
             return ((imaginary > 0) ? format.format(imaginary) : format.format(-imaginary)) + "i";
         }
-
     }
 
     public String toString() {
@@ -81,6 +79,5 @@ public class Complex implements Mathable {
         System.out.println(c1.toString());
         System.out.println(c2.toString());
         System.out.println(c3.toString());
-
     }
 }
