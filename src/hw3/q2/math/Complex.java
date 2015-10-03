@@ -52,8 +52,15 @@ public class Complex implements Mathable {
         return (imaginary != 0 && real != 0) ? ((imaginary > 0) ? " + " : " - ") : "";
     }
 
-    private String imaginaryString() {  // todo if real is zero and imaginary is negative
-        return (imaginary!=0) ? ((imaginary > 0) ? format.format(imaginary) : format.format(-imaginary)) + "i" : "";
+    private String imaginaryString() {
+        if (imaginary == 0.0) {
+            return "";
+        } else if (real == 0.0) {
+            return format.format(imaginary) + "i";
+        } else {
+            return ((imaginary > 0) ? format.format(imaginary) : format.format(-imaginary)) + "i";
+        }
+
     }
 
     public String toString() {
@@ -67,7 +74,7 @@ public class Complex implements Mathable {
     public static void main(String[] args) {
         Complex c1 = new Complex(2, 4),
                 c2 = new Complex(-1, 5.3),
-                c3 = new Complex(4.5, -5.1);
+                c3 = new Complex(0.0, -5.1);
         System.out.println(c1.toString());
         System.out.println(c2.toString());
         System.out.println(c3.toString());
