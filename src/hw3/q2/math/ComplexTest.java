@@ -49,6 +49,16 @@ public class ComplexTest extends TestCase {
         assertEquals(expected, joined);
     }
 
+    public void testMult() {
+        Complex c1 = new Complex(2, 2),
+                c2 = new Complex(3, -4),
+                cm1 = c1.mult(c2),
+                cm2 = c2.mult(c1);
+        String expected = "14 - 2i|14 - 2i",
+                actual = String.join("|", cm1.toString(), cm2.toString());
+        assertEquals(expected, actual);
+    }
+
     public void testConj() {
         Complex conj = c.conj();
         assertEquals("20 - 4i", conj.toString());

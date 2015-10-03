@@ -28,8 +28,11 @@ public class Complex implements Mathable {
         return new Complex(this.real-c2.real, this.imaginary-c2.imaginary);
     }
 
-    public Complex mult(Complex c2) { // todo implement
-        return c2;
+    public Complex mult(Complex c2) {
+        double newReal = (real * c2.r()) - (imaginary * c2.i()),
+                newImaginary = (real * c2.i()) + (imaginary * c2.r());
+        return new Complex(newReal, newImaginary);
+
     }
 
     public Complex div(Complex c2) { // todo implement
