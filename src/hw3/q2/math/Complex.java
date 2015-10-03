@@ -34,8 +34,13 @@ public class Complex implements Mathable {
         return new Complex(newReal, newImag);
     }
 
-    public Complex div(Complex c2) { // todo implement
-        return c2;
+    public Complex div(Complex c2) { // todo test
+        Complex denominatorConjugate = c2.conj(),
+                numerator = mult(denominatorConjugate),
+                denominator = c2.mult(denominatorConjugate);
+        double newReal = numerator.r() / denominator.r(),
+               newImag = numerator.i() / denominator.r();
+        return new Complex(newReal, newImag);
     }
 
     public double r() {

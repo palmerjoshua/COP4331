@@ -59,6 +59,15 @@ public class ComplexTest extends TestCase {
         assertEquals(expected, actual);
     }
 
+    public void testDiv() {
+        Complex c1 = new Complex(1, 0),
+                c2 = new Complex(5, 7),
+                quotient = c1.div(c2);
+        String expected = "0.06757 - 0.09459i",
+                actual = quotient.toString();
+        assertEquals(expected, actual);
+    }
+
     public void testConj() {
         Complex conj = c.conj();
         assertEquals("20 - 4i", conj.toString());
