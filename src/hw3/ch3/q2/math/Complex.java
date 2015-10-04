@@ -1,4 +1,4 @@
-package hw3.q2.math;
+package hw3.ch3.q2.math;
 
 
 import java.text.DecimalFormat;
