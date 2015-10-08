@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-public class Student { // todo implement comparators
+public class Student {
     private String name;
     private Date enrollmentDate;
 
