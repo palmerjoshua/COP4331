@@ -39,15 +39,33 @@ public class Student { // todo implement comparators
     private static ArrayList<Student> getExampleStudents() {
         ArrayList<Student> students = new ArrayList<>();
         Calendar c1 = Calendar.getInstance(),
-                c2 = Calendar.getInstance(),
-                c3 = Calendar.getInstance();
-        c1.set(Calendar.MONTH, Calendar.JANUARY, Calendar.DATE, 1, Calendar.YEAR, 1970);
-        c2.set(Calendar.MONTH, Calendar.JUNE, Calendar.DATE, 9, Calendar.YEAR, 1990);
-        c3.set(Calendar.MONTH, Calendar.APRIL, Calendar.DATE, 4, Calendar.YEAR, 1994);
+                 c2 = Calendar.getInstance(),
+                 c3 = Calendar.getInstance();
 
-        Student s1 = new Student("John S", c1.getTime()),
+        c1.set(Calendar.MONTH, Calendar.APRIL);
+        c1.set(Calendar.DATE, 4);
+        c1.set(Calendar.YEAR, 1994);
+
+        c2.set(Calendar.MONTH, Calendar.JUNE);
+        c2.set(Calendar.DATE, 9);
+        c2.set(Calendar.YEAR, 1990);
+
+        c3.set(Calendar.MONTH, Calendar.JANUARY);
+        c3.set(Calendar.DATE, 1);
+        c3.set(Calendar.YEAR, 1970);
+
+
+
+
+
+        Date d1 = c1.getTime(),
+             d2 = c2.getTime(),
+             d3 = c3.getTime();
+
+        Student s1 = new Student("Natasha B", c1.getTime()),
                 s2 = new Student("Joshua P", c2.getTime()),
-                s3 = new Student("Natasha B", c3.getTime());
+                s3 = new Student("John S", c3.getTime());
+
         students.add(s1);
         students.add(s2);
         students.add(s3);
@@ -56,16 +74,25 @@ public class Student { // todo implement comparators
 
     public static void main(String[] args) {
         ArrayList<Student> students = getExampleStudents();
-        Collections.sort(students, Student.getCompByName());
+
+        System.out.println("====ORIGINAL====");
         for (Student s: students) {
             System.out.println(s.getName());
             System.out.println(s.getEnrollmentDate().toString());
         }
-        System.out.println();
+
+        Collections.sort(students, Student.getCompByName());
+        System.out.println("====BY NAME====");
+        for (Student s: students) {
+            System.out.println(s.getName());
+            System.out.println(s.getEnrollmentDate().toString());
+        }
+
+        System.out.println("====BY DATE====");
         Collections.sort(students, Student.getCompByDate());
         for (Student s: students) {
             System.out.println(s.getName());
             System.out.println(s.getEnrollmentDate().toString());
         }
-    } // todo check why date defaults to 05 for all students
+    }
 }
