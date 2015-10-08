@@ -41,7 +41,8 @@ public class Student {
         ArrayList<Student> students = new ArrayList<Student>();
         Calendar c1 = Calendar.getInstance(),
                  c2 = Calendar.getInstance(),
-                 c3 = Calendar.getInstance();
+                 c3 = Calendar.getInstance(),
+                 c4 = Calendar.getInstance();
 
         c1.set(Calendar.MONTH, Calendar.APRIL);
         c1.set(Calendar.DATE, 4);
@@ -55,21 +56,19 @@ public class Student {
         c3.set(Calendar.DATE, 1);
         c3.set(Calendar.YEAR, 1970);
 
+        c4.set(Calendar.MONTH, Calendar.SEPTEMBER);
+        c4.set(Calendar.DATE, 30);
+        c4.set(Calendar.YEAR, 1985);
 
-
-
-
-        Date d1 = c1.getTime(),
-             d2 = c2.getTime(),
-             d3 = c3.getTime();
-
-        Student s1 = new Student("Natalia B", c1.getTime()),
-                s2 = new Student("Joshua P", c2.getTime()),
-                s3 = new Student("Leo G", c3.getTime());
+        Student s1 = new Student("Mac", c1.getTime()),
+                s2 = new Student("Dennis", c2.getTime()),
+                s3 = new Student("Sweet Dee", c3.getTime()),
+                s4 = new Student("Charlie", c4.getTime());
 
         students.add(s1);
         students.add(s2);
         students.add(s3);
+        students.add(s4);
         return students;
     }
 
@@ -83,8 +82,8 @@ public class Student {
             System.out.println(df.format(s.getEnrollmentDate()));
         }
 
-        Collections.sort(students, Student.getCompByName());
         System.out.println("====BY NAME====");
+        Collections.sort(students, Student.getCompByName());
         for (Student s: students) {
             System.out.println(s.getName());
             System.out.println(df.format(s.getEnrollmentDate()));
