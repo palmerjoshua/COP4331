@@ -1,5 +1,6 @@
 package hw3.ch4.q1;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -37,7 +38,7 @@ public class Student { // todo implement comparators
     }
 
     private static ArrayList<Student> getExampleStudents() {
-        ArrayList<Student> students = new ArrayList<>();
+        ArrayList<Student> students = new ArrayList<Student>();
         Calendar c1 = Calendar.getInstance(),
                  c2 = Calendar.getInstance(),
                  c3 = Calendar.getInstance();
@@ -62,9 +63,9 @@ public class Student { // todo implement comparators
              d2 = c2.getTime(),
              d3 = c3.getTime();
 
-        Student s1 = new Student("Natasha B", c1.getTime()),
+        Student s1 = new Student("Natalia B", c1.getTime()),
                 s2 = new Student("Joshua P", c2.getTime()),
-                s3 = new Student("John S", c3.getTime());
+                s3 = new Student("Leo G", c3.getTime());
 
         students.add(s1);
         students.add(s2);
@@ -74,25 +75,26 @@ public class Student { // todo implement comparators
 
     public static void main(String[] args) {
         ArrayList<Student> students = getExampleStudents();
+        SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 
         System.out.println("====ORIGINAL====");
         for (Student s: students) {
             System.out.println(s.getName());
-            System.out.println(s.getEnrollmentDate().toString());
+            System.out.println(df.format(s.getEnrollmentDate()));
         }
 
         Collections.sort(students, Student.getCompByName());
         System.out.println("====BY NAME====");
         for (Student s: students) {
             System.out.println(s.getName());
-            System.out.println(s.getEnrollmentDate().toString());
+            System.out.println(df.format(s.getEnrollmentDate()));
         }
 
         System.out.println("====BY DATE====");
         Collections.sort(students, Student.getCompByDate());
         for (Student s: students) {
             System.out.println(s.getName());
-            System.out.println(s.getEnrollmentDate().toString());
+            System.out.println(df.format(s.getEnrollmentDate()));
         }
     }
 }

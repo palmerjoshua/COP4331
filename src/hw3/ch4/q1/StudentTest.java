@@ -1,9 +1,10 @@
 package hw3.ch4.q1;
+import junit.framework.TestCase;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import junit.framework.TestCase;
 
 
 public class StudentTest extends TestCase {
@@ -35,7 +36,7 @@ public class StudentTest extends TestCase {
     public void testGetCompByName() throws Exception {
         Student s2 = new Student("Bob Boberson", cal.getTime()),
                 s3 = new Student("Harold Harrison", cal.getTime());
-        ArrayList<Student> students = new ArrayList<>();
+        ArrayList<Student> students = new ArrayList<Student>();
         students.add(s1);
         students.add(s3);
         students.add(s2);
@@ -78,7 +79,7 @@ public class StudentTest extends TestCase {
 
         Student s2 = new Student("Bob", c2.getTime()),
                 s3 = new Student("Harry", c3.getTime());
-        ArrayList<Student> students = new ArrayList<>();
+        ArrayList<Student> students = new ArrayList<Student>();
         students.add(s1);
         students.add(s2);
         students.add(s3);
