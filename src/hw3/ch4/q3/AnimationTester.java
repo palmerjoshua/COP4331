@@ -14,8 +14,9 @@ public class AnimationTester
     {
         JFrame frame = new JFrame();
 
-        final MoveableShape[] shapes = {new CarShape(0, 0, CAR_WIDTH), new CarShape(0, 101, CAR_WIDTH),
-                                        new CarShape(0, 201, CAR_WIDTH), new CarShape(0, 301, CAR_WIDTH)
+        final MoveableShape[] shapes = {
+                new CarShape(0, 0, CAR_WIDTH), new CarShape(0, 100, CAR_WIDTH),
+                new CarShape(0, 200, CAR_WIDTH), new CarShape(0, 300, CAR_WIDTH)
         };
 
         ShapeIcon icon = new ShapeIcon(shapes,
@@ -46,6 +47,6 @@ public class AnimationTester
     }
 
     private static final int ICON_WIDTH = 400;
-    private static final int ICON_HEIGHT = 408;
+    private static final int ICON_HEIGHT = 400;
     private static final int CAR_WIDTH = 100;
 }
