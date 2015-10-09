@@ -6,11 +6,11 @@ import java.awt.geom.Ellipse2D;
 
 
 public class ColorCircleIcon implements Icon {
-    private int width;
+    private int diameter;
     private Color color;
 
     public ColorCircleIcon(int width, Color color) {
-        this.width = width;
+        this.diameter = width;
         this.color = color;
     }
 
@@ -18,7 +18,7 @@ public class ColorCircleIcon implements Icon {
         return getIconWidth();
     }
     public int getIconWidth() {
-        return width;
+        return diameter;
     }
 
     public void setColor(int index) {
@@ -32,7 +32,7 @@ public class ColorCircleIcon implements Icon {
 
     public void paintIcon(Component c, Graphics g, int x, int y) {
         Graphics2D g2 = (Graphics2D) g;
-        Ellipse2D.Double circle = new Ellipse2D.Double(x, y, width, width);
+        Ellipse2D.Double circle = new Ellipse2D.Double(x, y, diameter, diameter);
 
         g2.setColor(color);
         g2.fill(circle);
