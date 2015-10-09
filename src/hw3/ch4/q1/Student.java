@@ -4,13 +4,13 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-public class Student {
+public class Student { // TODO javadocs: write contracts, pre- and postconditions, class invariant
     private String name;
     private Date enrollmentDate;
 
-    public Student(String name, Date enrollmentDate) {
+    public Student(String name, Date whenEnrolled) {
         this.name = name;
-        this.enrollmentDate = new Date(enrollmentDate.getTime());
+        this.enrollmentDate = new Date(whenEnrolled.getTime());
     }
 
     public String getName() {return name;}
@@ -37,33 +37,19 @@ public class Student {
         };
     }
 
+
+    private static Student createExampleStudent(String name, int month, int day, int year) {
+        Calendar c = Calendar.getInstance();
+        c.set(year, month, day);
+        return new Student(name, c.getTime());
+    }
+
     private static ArrayList<Student> getExampleStudents() {
         ArrayList<Student> students = new ArrayList<Student>();
-        Calendar c1 = Calendar.getInstance(),
-                 c2 = Calendar.getInstance(),
-                 c3 = Calendar.getInstance(),
-                 c4 = Calendar.getInstance();
-
-        c1.set(Calendar.MONTH, Calendar.APRIL);
-        c1.set(Calendar.DATE, 4);
-        c1.set(Calendar.YEAR, 1994);
-
-        c2.set(Calendar.MONTH, Calendar.JUNE);
-        c2.set(Calendar.DATE, 9);
-        c2.set(Calendar.YEAR, 1990);
-
-        c3.set(Calendar.MONTH, Calendar.JANUARY);
-        c3.set(Calendar.DATE, 1);
-        c3.set(Calendar.YEAR, 1970);
-
-        c4.set(Calendar.MONTH, Calendar.SEPTEMBER);
-        c4.set(Calendar.DATE, 30);
-        c4.set(Calendar.YEAR, 1985);
-
-        Student s1 = new Student("Mac", c1.getTime()),
-                s2 = new Student("Dennis", c2.getTime()),
-                s3 = new Student("Sweet Dee", c3.getTime()),
-                s4 = new Student("Charlie", c4.getTime());
+        Student s1 = createExampleStudent("McDonald, Ronald", Calendar.APRIL, 4, 1994),
+                s2 = createExampleStudent("Reynolds, Dennis", Calendar.JUNE, 9, 1990),
+                s3 = createExampleStudent("Reynolds, Deandra", Calendar.JANUARY, 1, 1970),
+                s4 = createExampleStudent("Kelly, Charlie", Calendar.SEPTEMBER, 30, 1985);
 
         students.add(s1);
         students.add(s2);
