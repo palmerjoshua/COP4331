@@ -80,7 +80,7 @@ public class Complex implements Mathable {
         return real == c2.real && imaginary == c2.imaginary;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { // TODO display more functions
         Complex c1 = new Complex(2, 4),
                 c2 = new Complex(-1, 5.3),
                 c3 = new Complex(0.0, -5.1);
