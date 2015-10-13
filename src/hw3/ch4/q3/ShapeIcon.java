@@ -4,6 +4,7 @@ import java.awt.*;
 
 /**
  An icon that contains a moveable shape.
+ This was modified to hold multiple MoveableShapes.
  */
 public class ShapeIcon implements Icon
 {

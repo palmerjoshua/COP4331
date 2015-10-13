@@ -6,7 +6,8 @@ import java.awt.event.ActionListener;
 
 /**
  This program implements an animation that moves
- a car shape.
+ a car shape. This was modified to move four car
+ shapes instead of one.
  */
 public class AnimationTester
 {
