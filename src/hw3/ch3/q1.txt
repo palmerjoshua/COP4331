@@ -1,0 +1,25 @@
+Question 3.1
+
+a. Encapsulation separates the usage of a class from its implementation by
+   restricting access to some of its components. Instance variables are
+   made private, and the user can only modify them via methods.
+   This prevents unintended side effects from occurring. If the user could
+   access and modify instance variables directly, the changes he or she
+   makes could cause the class to behave unpredictably or could break the
+   code altogether.
+
+b. Throwing an exception is OK when the precondition fails. For example,
+   consider a method that divides two numbers given as parameters by the
+   user of the class. The precondition may be that the divisor must not
+   equal zero. If the user provides a divisor of zero despite the
+   precondition, then the method is unable to return a quotient since
+   dividing by zero is impossible. Thus, the method can throw an exception
+   to tell the user that their divisor parameter was an illegal argument.
+
+c. By avoiding side effects, the user may rest assured that a method will
+   yield the same result no matter what. If side effects are permitted,
+   the unwanted results could break other parts of the user's code, possibly
+   without the user's knowledge, which could lead to messy debugging problems.
+   An extreme side effect would be if the method no longer yields the results
+   that the user expects. At that point, the user would have no use for the
+   method and would need to find other ways to solve the problem.
