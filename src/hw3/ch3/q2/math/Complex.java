@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
  * one to represent the real part, and the other
  * to represent the imaginary part (the coefficient of i).
  */
-public class Complex implements Mathable {
+public class Complex implements ComplexNumber {
     private double real, imaginary;
     private final DecimalFormat format = new DecimalFormat("0.###");
 

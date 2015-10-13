@@ -1,6 +1,6 @@
 package hw3.ch3.q2.math;
 
-public interface Mathable { // todo refactor name
+public interface ComplexNumber {
     public double r();
     public double i();
     public Complex add(Complex c);
