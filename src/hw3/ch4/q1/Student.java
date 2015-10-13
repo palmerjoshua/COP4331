@@ -3,8 +3,11 @@ package hw3.ch4.q1;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-
-public class Student { // TODO javadocs: write contracts, pre- and postconditions, class invariant
+/**
+ * Represents a school student with a name and an enrollment date.
+ * Class invariant: name != null && enrollmentDate != null
+ */
+public class Student { // TODO javadocs: write contracts, pre- and postconditions
     private String name;
     private Date enrollmentDate;
 
@@ -19,6 +22,14 @@ public class Student { // TODO javadocs: write contracts, pre- and postcondition
         return new Date(enrollmentDate.getTime());
     }
 
+    /**
+     * Provides a Comparator for sorting methods to use to
+     * sort Students by their names.
+     * @return 0 if both Students' names are lexicographically
+     * equivalent, -1 if the second Student's name is lexicographically
+     * greater than the first, or 1 if the second Student's name is
+     * lexicographically less than the first.
+     */
     public static Comparator<Student> getCompByName() {
         return new Comparator<Student>() {
             @Override
@@ -28,6 +39,13 @@ public class Student { // TODO javadocs: write contracts, pre- and postcondition
         };
     }
 
+    /**
+     * Provides a Comparator for sorting methods to use to
+     * sort Students by their enrollment dates.
+     * @return 0 if both Students enrolled on the same date,
+     * -1 if the second Student enrolled after the first,
+     * or 1 if the second Student enrolled before the first.
+     */
     public static Comparator<Student> getCompByDate() {
         return new Comparator<Student>() {
             @Override

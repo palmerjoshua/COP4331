@@ -85,10 +85,5 @@ public class StudentTest extends TestCase {
         students.add(s3);
         Collections.sort(students, Student.getCompByDate());
         assertTrue(isSortedByDate(students));
-
-
-
-
-
     }
 }
