@@ -7,6 +7,13 @@ import java.awt.event.ActionListener;
 
 public class ColorButtonTester {
 
+    /**
+     * Creates a button with a label and ActionListener given by the user.
+     * @param index int corresponding to the desired label
+     * @param actionListener The function to run when the button is clicked.
+     * @return JButton
+     * @throws IllegalArgumentException if the given index is not in {0,1,2}
+     */
     private static JButton createButton(int index, ActionListener actionListener) {
         String[] labels = {"Green", "Blue", "Red"};
         try {

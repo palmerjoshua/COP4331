@@ -14,13 +14,27 @@ public class ColorCircleIcon implements Icon {
         this.color = color;
     }
 
-    public int getIconHeight() {
-        return getIconWidth();
-    }
+    /**
+     * Returns the diameter since height == width for a circle.
+     * @return int diameter
+     */
     public int getIconWidth() {
         return diameter;
     }
 
+    /**
+     * @see #getIconWidth()
+     * @return int diameter
+     */
+    public int getIconHeight() {
+        return getIconWidth();
+    }
+
+    /**
+     * Changes the color of the button based on the user's parameter
+     * @param index int corresponding to the desired color
+     * @throws IllegalArgumentException if user gives an index not in {0,1,2}
+     */
     public void setColor(int index) {
         Color[] colors = {Color.green, Color.blue, Color.red};
         try {
