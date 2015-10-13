@@ -46,9 +46,10 @@ public class StudentTest extends TestCase {
 
     private static boolean isSortedByName(ArrayList<Student> al) {
         boolean sorted = true;
+        Student s1, s2;
         for (int i=1; i < al.size(); i++)  {
-            Student s1 = al.get(i-1),
-                    s2 = al.get(i);
+            s1 = al.get(i-1);
+            s2 = al.get(i);
             if (s1.getName().compareTo(s2.getName()) > 0)
                 sorted = false;
         }
@@ -57,9 +58,10 @@ public class StudentTest extends TestCase {
 
     private static boolean isSortedByDate(ArrayList<Student> al) {
         boolean sorted = true;
+        Student s1, s2;
         for (int i=1; i < al.size(); i++)  {
-            Student s1 = al.get(i-1),
-                    s2 = al.get(i);
+            s1 = al.get(i-1);
+            s2 = al.get(i);
             if (s1.getEnrollmentDate().compareTo(s2.getEnrollmentDate()) > 0)
                 sorted = false;
         }

@@ -7,7 +7,7 @@ import java.util.*;
  * Represents a school student with a name and an enrollment date.
  * Class invariant: name != null && enrollmentDate != null
  */
-public class Student { // TODO javadocs: write contracts, pre- and postconditions
+public class Student {
     private String name;
     private Date enrollmentDate;
 
@@ -16,8 +16,20 @@ public class Student { // TODO javadocs: write contracts, pre- and postcondition
         this.enrollmentDate = new Date(whenEnrolled.getTime());
     }
 
+    /**
+     * Accessor for the Student's name
+     * @return String containing the name
+     * precondition: name != null
+     * postcondition: none
+     */
     public String getName() {return name;}
 
+    /**
+     * Accessor for the Student's enrollment date
+     * @return Date object corresponding to the enrollment date
+     * precondition: enrollmentDate != null
+     * postcondition: none
+     */
     public Date getEnrollmentDate() {
         return new Date(enrollmentDate.getTime());
     }
@@ -29,6 +41,8 @@ public class Student { // TODO javadocs: write contracts, pre- and postcondition
      * equivalent, -1 if the second Student's name is lexicographically
      * greater than the first, or 1 if the second Student's name is
      * lexicographically less than the first.
+     * precondition: name != null
+     * postcondition: none
      */
     public static Comparator<Student> getCompByName() {
         return new Comparator<Student>() {
@@ -45,6 +59,7 @@ public class Student { // TODO javadocs: write contracts, pre- and postcondition
      * @return 0 if both Students enrolled on the same date,
      * -1 if the second Student enrolled after the first,
      * or 1 if the second Student enrolled before the first.
+     * precondition: enrollmentDate != null
      */
     public static Comparator<Student> getCompByDate() {
         return new Comparator<Student>() {
@@ -55,13 +70,24 @@ public class Student { // TODO javadocs: write contracts, pre- and postcondition
         };
     }
 
-
+    /**
+     * Helper function to create a Student
+     * @param name Student's name
+     * @param month Month in which the Student enrolled
+     * @param day Day on which the Student enrolled
+     * @param year Year on which the Student enrolled
+     * @return Student
+     */
     private static Student createExampleStudent(String name, int month, int day, int year) {
         Calendar c = Calendar.getInstance();
         c.set(year, month, day);
         return new Student(name, c.getTime());
     }
 
+    /**
+     * Helper function to create a collection of Students for the example in main()
+     * @return ArrayList of Student
+     */
     private static ArrayList<Student> getExampleStudents() {
         ArrayList<Student> students = new ArrayList<Student>();
         Student s1 = createExampleStudent("McDonald, Ronald", Calendar.APRIL, 4, 1994),
