@@ -5,8 +5,10 @@ import java.awt.geom.Rectangle2D;
 
 
 public class GraphRectangle implements GraphShape {
-    int x, y;
-    int width, height;
+    private int x, y;
+    private int width, height;
+
+
     public GraphRectangle(int x, int y, int width, int height) {
         this.x = x; this.y = y;
         this.width = width; this.height = height;
