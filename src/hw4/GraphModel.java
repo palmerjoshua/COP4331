@@ -22,6 +22,8 @@ public class GraphModel extends Observable {
         } catch (IndexOutOfBoundsException e) {
             throw new IllegalArgumentException("Index must be in [0,2]. Input: " + barIndex);
         }
+        setChanged();
+        notifyObservers();
     }
 
     public void setBarValue(int barIndex, String value) {
@@ -36,6 +38,8 @@ public class GraphModel extends Observable {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Value must be an integer in [0, 100]. Input: "+ value);
         }
+        setChanged();
+        notifyObservers();
     }
     public int[] getBarValues() {
         return barValues.clone();

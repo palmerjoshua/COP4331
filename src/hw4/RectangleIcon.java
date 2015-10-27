@@ -6,17 +6,9 @@ import java.awt.geom.Rectangle2D;
 
 
 public class RectangleIcon implements Icon {
-    public RectangleIcon(int w, int h, Color c) {
-        width = w; ORIGINAL_WIDTH = w;
-        color = c;
-    }
-    public RectangleIcon() {
-        width = 100; ORIGINAL_WIDTH = 100;
-        color = Color.BLACK;
-    }
 
     public RectangleIcon(Color c) {
-        width = 100; ORIGINAL_WIDTH = 100;
+        width = 400; ORIGINAL_WIDTH = 400;
         color = c;
     }
 
@@ -42,6 +34,7 @@ public class RectangleIcon implements Icon {
         }
         double p = (double)percentage / 100.0;
         width = (int)Math.floor(ORIGINAL_WIDTH * p);
+        return;
     }
 
     public int getIconHeight() {return HEIGHT;}
