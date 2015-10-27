@@ -25,62 +25,39 @@ public class GraphView implements Observer {
         lab3 = new JLabel(bar3);
     }
 
+    private JTextField newController(final Runnable function) {
+        JTextField newField = new JTextField();
+        newField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                function.run();
+            }
+        });
+        return newField;
+    }
+
+    private void changeModel(int barIndex, String value) {
+        try {
+            model.setBarValue(barIndex, value);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ignoring value: '"+value+"'");
+        }
+    }
+
     private void initFields() {
-        field1 = new JTextField(); field2 = new JTextField(); field3 = new JTextField();
-        field1.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                try {
-                    model.setBarValue(0, field1.getText());
-                } catch (IllegalArgumentException ex) {
-                    System.out.println("Ignoring input: '"+field1.getText()+"'");
-                }
-            }
-        });
-        field2.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
-            @Override
-            public void keyPressed(KeyEvent e) {
-
-            }
-            @Override
-            public void keyReleased(KeyEvent e) {
-                try {
-                    model.setBarValue(1, field2.getText());
-                } catch (IllegalArgumentException ex) {System.out.println("Ignoring input: '"+field2.getText()+"'");}
-            }
-        });
-        field3.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                try {
-                    model.setBarValue(2, field3.getText());
-                } catch (IllegalArgumentException ex) {System.out.println("Ignoring input: '"+field3.getText()+"'");}
-            }
-        });
+        field1 = newController(()-> changeModel(0, field1.getText()));
+        field2 = newController(()->changeModel(1, field2.getText()));
+        field3 = newController(()->changeModel(2, field3.getText()));
     }
 
     private void initPanels() {
@@ -108,27 +85,28 @@ public class GraphView implements Observer {
         frame.setVisible(true);
     }
 
-    public GraphView() {
-        model = new GraphModel();
+    public GraphView(GraphModel m) {
+        model = m;
         initBars();
         initFields();
         initPanels();
-        initFrame();
     }
 
     public void update(Observable o, Object object) {
-        final RectangleIcon[] icons = {bar1, bar2, bar3};
-        final JLabel[] labels = {lab1, lab2, lab3};
-        int[] vals = model.getBarValues();
-        for (int i=0; i < 3; i++) {
-            icons[i].setWidth(vals[i]);
-            labels[i].repaint();
-        }
+        int[] values = model.getBarValues();
+        bar1.setWidthPercentage(values[0]);
+        bar2.setWidthPercentage(values[1]);
+        bar3.setWidthPercentage(values[2]);
+        lab1.repaint();
+        lab2.repaint();
+        lab3.repaint();
 
     }
 
     public static void main(String[] args) {
-        GraphView view = new GraphView();
-
+        GraphModel model = new GraphModel();
+        GraphView view = new GraphView(model);
+        model.addObserver(view);
+        view.initFrame();
     }
 }
