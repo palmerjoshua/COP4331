@@ -1,4 +1,4 @@
-package hw4;
+package hw4.ch5;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;

@@ -1,4 +1,4 @@
-package hw4;
+package hw4.ch5;
 import java.util.Observable;
 
 public class GraphModel extends Observable {
