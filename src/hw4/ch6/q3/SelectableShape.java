@@ -17,15 +17,8 @@ public abstract class SelectableShape implements SceneShape
         return selected;
     }
 
-    public void drawSelection(Graphics2D g2)
-    {
-    // this is where the magic happens
-        translate(1, 1);
-        draw(g2);
-        translate(1, 1);
-        draw(g2);
-        translate(-2, -2);
-    }
+    public abstract void drawSelection(Graphics2D g2);
+
 
     private boolean selected;
 }
