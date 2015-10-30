@@ -1,4 +1,4 @@
-package hw4.ch6;
+package hw4.ch6.q3;
 
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;

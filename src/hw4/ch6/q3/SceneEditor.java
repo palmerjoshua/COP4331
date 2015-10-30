@@ -1,9 +1,9 @@
-package hw4.ch6;
+package hw4.ch6.q3;
 
-import java.awt.*;
-import java.awt.geom.*;
-import java.awt.event.*;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
    A program that allows users to edit a scene composed
@@ -14,7 +14,7 @@ public class SceneEditor
    public static void main(String[] args)
    {
       JFrame frame = new JFrame();
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
       final SceneComponent scene = new SceneComponent();
 

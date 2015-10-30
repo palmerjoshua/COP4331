@@ -1,6 +1,5 @@
-package hw4.ch6;
+package hw4.ch6.q3;
 
-import java.awt.*;
 import java.awt.geom.*;
 
 /**
