@@ -1,11 +1,11 @@
-    package hw4.ch6.q3;
+package hw4.ch6.q3;
 
-    import java.awt.*;
-    import java.awt.geom.*;
+import java.awt.*;
+import java.awt.geom.*;
 
-    /**
-    A scene shape that is composed of multiple geometric shapes.
-    */
+/**
+A scene shape that is composed of multiple geometric shapes.
+*/
 public abstract class CompoundShape extends SelectableShape
 {
     public CompoundShape()
@@ -33,6 +33,22 @@ public abstract class CompoundShape extends SelectableShape
       g2.draw(path);
     }
 
+    /**
+     * Draws a blue dashed border around a selected shape,
+     * and draws blue squares in the corners of the border.
+     * @param g2 The Graphics object used to draw the shapes.
+     * @see #drawSelectedBorder(Graphics2D)
+     * @see #drawSelectedCorners(Graphics2D)
+     */
+    public void drawSelection(Graphics2D g2) {
+        drawSelectedBorder(g2);
+        drawSelectedCorners(g2);
+    }
+
+    /**
+     * Draws a blue dashed border around the shape.
+     * @param g2 the Graphics object used to draw the shapes.
+     */
     private void drawSelectedBorder(Graphics2D g2) {
         Rectangle2D bounds = path.getBounds();
         double x = bounds.getX(), y = bounds.getY(), width = bounds.getMaxX()-x, height = bounds.getMaxY()-y;
@@ -42,10 +58,16 @@ public abstract class CompoundShape extends SelectableShape
         g2.setStroke(dashed);
         g2.setColor(Color.BLUE);
         g2.draw(border);
-        g2.setStroke(new BasicStroke());
+        g2.setStroke(new BasicStroke()); // reset so other shapes aren't affected
         g2.setColor(Color.BLACK);
     }
 
+    /**
+     * Draws blue squares in the corners of the shape's
+     * border drawn by drawSelectedBorder()
+     * @param g2 the Graphics object used to draw the shapes.
+     * @see #drawSelectedBorder(Graphics2D)
+     */
     private void drawSelectedCorners(Graphics2D g2) {
         Rectangle2D bounds = path.getBounds();
         double x = bounds.getX(), y = bounds.getY(), width = bounds.getMaxX()-x, height = bounds.getMaxY()-y;
@@ -59,12 +81,7 @@ public abstract class CompoundShape extends SelectableShape
         for (Rectangle2D.Double corner : corners) {
             g2.fill(corner);
         }
-        g2.setPaint(Color.BLACK);
-    }
-
-    public void drawSelection(Graphics2D g2) {
-        drawSelectedBorder(g2);
-        drawSelectedCorners(g2);
+        g2.setPaint(Color.BLACK); // reset so other shapes aren't affected
     }
 
     private GeneralPath path;
