@@ -11,13 +11,14 @@ public class Pair<K, V> implements Cloneable {
         pairs.add(pairs.get(0).clone());
 
         for (Pair<Integer, Integer> pair : pairs) {
-            System.out.println("Key: "+ pair.k() + " Value: " + pair.v());
+            System.out.println("      Key: " + pair.k());
+            System.out.println("    Value: " + pair.v());
             System.out.println("To String: " + pair.toString());
             System.out.println("Hash Code: " + pair.hashCode() + "\n");
         }
 
-        System.out.println("First ==  Third: " + pairs.get(0).equals(pairs.get(2)));
-        System.out.println("First == Second: " + pairs.get(0).equals(pairs.get(1)));
+        System.out.println("First ==  Third: " + pairs.get(0).equals(pairs.get(2))); // should be true
+        System.out.println("First == Second: " + pairs.get(0).equals(pairs.get(1)));// should be false
     }
 
     public Pair(K k, V v) {
