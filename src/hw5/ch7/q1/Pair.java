@@ -8,8 +8,11 @@ public class Pair<K, V> {
     public K k() {return key;}
     public V v() {return val;}
 
-    public boolean equals(Object o) { // todo implement
-        return false;
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (getClass() != o.getClass()) return false;
+        final Pair<K,V> other = (Pair<K,V>) o;
+        return key.equals(other.k()) && val.equals(other.v());
     }
 
     public int hashCode() {
@@ -17,8 +20,9 @@ public class Pair<K, V> {
     }
 
     public String toString() {
-        return key+", "+val;
+        return this.getClass().getName()+"["+key.toString()+", "+val.toString()+"]";
     }
+
 
     // todo implement clone()
 
