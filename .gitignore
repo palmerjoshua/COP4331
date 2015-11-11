@@ -4,3 +4,4 @@ out
 *_instructions.txt
 *_output.txt
 src/test
+*.ser
