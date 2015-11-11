@@ -1,25 +1,12 @@
 package hw5.ch7.q1;
 
-import java.util.ArrayList;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class Pair<K, V> implements Cloneable {
+public class Pair<K, V> implements Cloneable, Serializable {
 
-    public static void main(String[] args) {
-        ArrayList<Pair<Integer, Integer>> pairs = new ArrayList<>();
-        pairs.add(new Pair<>(5, 6));
-        pairs.add(new Pair<>(8, 9));
-        pairs.add(pairs.get(0).clone());
 
-        for (Pair<Integer, Integer> pair : pairs) {
-            System.out.println("      Key: " + pair.k());
-            System.out.println("    Value: " + pair.v());
-            System.out.println("To String: " + pair.toString());
-            System.out.println("Hash Code: " + pair.hashCode() + "\n");
-        }
-
-        System.out.println("First ==  Third: " + pairs.get(0).equals(pairs.get(2))); // should be true
-        System.out.println("First == Second: " + pairs.get(0).equals(pairs.get(1)));// should be false
-    }
 
     public Pair(K k, V v) {
         key = k;
@@ -45,6 +32,18 @@ public class Pair<K, V> implements Cloneable {
 
     public Pair<K,V> clone() {
         return new Pair<>(k(), v());
+    }
+
+    private void writeObject(ObjectOutputStream os) throws Exception {
+        os.defaultWriteObject();
+        os.writeObject(key);
+        os.writeObject(val);
+    }
+
+    private void readObject(ObjectInputStream os) throws Exception {
+        os.defaultReadObject();
+        key = (K) os.readObject();
+        val = (V) os.readObject();
     }
 
     private K key;
