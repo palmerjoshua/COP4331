@@ -2,7 +2,6 @@ package hw5.ch7.q1;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class PairTest {
     public static void main(String[] args) throws Exception {
@@ -11,6 +10,13 @@ public class PairTest {
         serializePairs(pairs);
     }
 
+    /**
+     * Reads a file of serialized Pairs and generates an ArrayList of them.
+     * If no serialized Pairs exist yet, random Pairs are generated.
+     * @return An ArrayList of Pairs
+     * @throws Exception on input stream errors
+     * @see #serializePairs(ArrayList)
+     */
     private static ArrayList<Pair> deserializePairs() throws Exception {
         FileInputStream fis;
         ObjectInputStream ois;
@@ -30,11 +36,19 @@ public class PairTest {
             ois.close();
             fis.close();
         } catch (FileNotFoundException e) {
-            pairs = randomPairList();
+            pairs = Utils.randomPairsWithClone();
         }
         return pairs;
     }
 
+    /**
+     * Helper function that demonstrates all the required Pair methods.
+     * @param pairs ArrayList of Pairs to be used for the demonstration.
+     * Note: clone() is used when the Pairs are generated. The Pairs are
+     *       ordered such that the first and third Pair in the ArrayList
+     *       are clones.
+     * @see Utils randomPairsWithClone()
+     */
     private static void showPairData(ArrayList<Pair> pairs) {
         for (Pair pair : pairs) {
             System.out.println("      Key: " + pair.k());
@@ -47,6 +61,12 @@ public class PairTest {
         System.out.println("First == Second: " + pairs.get(0).equals(pairs.get(1)));// should be false
     }
 
+    /**
+     * Serializes Pairs and saves them to a file.
+     * @param pairs Pairs to be serialized.
+     * @throws Exception on output stream errors
+     * @see #deserializePairs()
+     */
     private static void serializePairs(ArrayList<Pair> pairs) throws Exception {
         FileOutputStream fos = new FileOutputStream("object.ser");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -57,18 +77,9 @@ public class PairTest {
         fos.close();
     }
 
-    private static ArrayList<Pair> randomPairList() {
-        ArrayList<Pair> pairs = new ArrayList<>();
-        pairs.add(randomIntPair());
-        pairs.add(randomIntPair());
-        pairs.add(pairs.get(0).clone()); // always have one clone so we can test it
-        return pairs;
-    }
 
-    private static Pair randomIntPair() {
-        Random random = new Random();
-        return new Pair<Integer, Integer>(random.nextInt(100), random.nextInt(100));
-    }
+
+
 
 
 

@@ -4,14 +4,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-public class Pair<K, V> implements Cloneable, Serializable {
-
-
+public class Pair<K extends Comparable<K>, V extends Comparable<V>>
+        implements Cloneable, Serializable, Comparable<Pair<K,V>> {
 
     public Pair(K k, V v) {
         key = k;
         val = v;
     }
+
     public K k() {return key;}
     public V v() {return val;}
 
@@ -32,6 +32,12 @@ public class Pair<K, V> implements Cloneable, Serializable {
 
     public Pair<K,V> clone() {
         return new Pair<>(k(), v());
+    }
+
+    public int compareTo(Pair<K, V> other) {
+        if (key.compareTo(other.k()) == 0)
+            return val.compareTo(other.v());
+        return key.compareTo(other.k());
     }
 
     private void writeObject(ObjectOutputStream os) throws Exception {
